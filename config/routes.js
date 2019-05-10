@@ -9,9 +9,10 @@ const users = require("../database/helpers/users-model.js");
 // Environmental Variables
 const secrets = require("./secrets.js");
 
-// Middleware for /api/jokes
-const { authenticate } = require("../auth/authenticate");
+// Middleware and Token
+const { authenticate, generateToken } = require("../auth/authenticate");
 
+// Endpoints
 module.exports = server => {
   server.post("/api/register", register);
   server.post("/api/login", login);
@@ -67,13 +68,11 @@ function login(req, res) {
       .then(user => {
         if (user && bcrypt.compareSync(password, user.password)) {
           const token = generateToken(user);
-          res
-            .status(200)
-            .json({
-              message: `Login success! Welcome ${user.username}!`,
-              user,
-              token
-            });
+          res.status(200).json({
+            message: `Login success! Welcome ${user.username}!`,
+            user,
+            token
+          });
         } else {
           res.status(401).json({ error: "You shall not pass!" });
         }
@@ -114,19 +113,4 @@ function getJokes(req, res) {
     });
 }
 
-// Token
-
-function generateToken(user) {
-  const payload = {
-    subject: user.id,
-    username: user.username
-  };
-
-  const secret = secrets.jwtSecret;
-
-  const options = {
-    expiresIn: "5h"
-  };
-
-  return jwt.sign(payload, secret, options);
-}
+// importing token from > auth > authentication
