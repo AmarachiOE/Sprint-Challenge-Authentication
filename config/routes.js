@@ -5,7 +5,6 @@ const axios = require("axios");
 
 // Users Data
 const users = require("../database/helpers/users-model.js");
-const db = require("../database/dbConfig.js");
 
 // Environmental Variables
 const secrets = require("./secrets.js");
@@ -16,9 +15,11 @@ const { authenticate } = require("../auth/authenticate");
 module.exports = server => {
   server.post("/api/register", register);
   server.post("/api/login", login);
+  server.get("/api/users", getUsers);
   server.get("/api/jokes", authenticate, getJokes);
 };
 
+// Register
 function register(req, res) {
   // implement user registration
   let user = req.body;
@@ -38,13 +39,11 @@ function register(req, res) {
         // generate token
         const token = generateToken(user);
 
-        res
-          .status(201)
-          .json({
-            message: `Registration success! Welcome ${user.username}!`,
-            user,
-            token
-          });
+        res.status(201).json({
+          message: `Registration success! Welcome ${user.username}!`,
+          user,
+          token
+        });
       })
       .catch(err => {
         res.status(500).json({
@@ -54,12 +53,24 @@ function register(req, res) {
   }
 }
 
+// Login
 function login(req, res) {
   // implement user login
 }
 
-// =====  function getUsers?
+// Users
+function getUsers(req, res) {
+  users
+    .find()
+    .then(users => {
+      res.status(200).json(users);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+}
 
+// Jokes
 function getJokes(req, res) {
   const requestOptions = {
     headers: { accept: "application/json" }
