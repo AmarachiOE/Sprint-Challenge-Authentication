@@ -56,6 +56,34 @@ function register(req, res) {
 // Login
 function login(req, res) {
   // implement user login
+  let { username, password } = req.body;
+  if (!username || !password) {
+    res
+      .status(400)
+      .json({ error: "Please login with a username and password." });
+  } else {
+    users
+      .findBy({ username })
+      .then(user => {
+        if (user && bcrypt.compareSync(password, user.password)) {
+          const token = generateToken(user);
+          res
+            .status(200)
+            .json({
+              message: `Login success! Welcome ${user.username}!`,
+              user,
+              token
+            });
+        } else {
+          res.status(401).json({ error: "You shall not pass!" });
+        }
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: "Uh oh! There was an error logging you in." });
+      });
+  }
 }
 
 // Users
