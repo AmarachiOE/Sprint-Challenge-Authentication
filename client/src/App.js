@@ -17,11 +17,11 @@ function App(props) {
   return (
     <div className="App">
       <header>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/signup" activeClassName="active-nav">Sign Up</NavLink>
         &nbsp;|&nbsp;
-        <NavLink to="/signin">Sign In</NavLink>
+        <NavLink to="/signin" activeClassName="active-nav">Sign In</NavLink>
         &nbsp;|&nbsp;
-        <NavLink to="jokes">Dad Jokes</NavLink>
+        <NavLink to="jokes" activeClassName="active-nav">Dad Jokes</NavLink>
         &nbsp;|&nbsp;
         <button onClick={logout}>Sign Out</button>
       </header>
