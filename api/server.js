@@ -1,9 +1,12 @@
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
+// Packages
+const express = require("express");
+const cors = require("cors");
+const helmet = require("helmet");
 
-const configureRoutes = require('../config/routes.js');
+// Routes
+const configureRoutes = require("../config/routes.js");
 
+// Server
 const server = express();
 
 server.use(helmet());

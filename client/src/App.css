@@ -1,0 +1,82 @@
+.App {
+  text-align: center;
+  margin-top: 20px;
+}
+
+a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: salmon;
+  margin: 0 20px;
+}
+
+.active-nav {
+  font-weight: bold;
+  text-decoration: underline;
+  
+}
+ 
+button {
+  width: 100px;
+  height: 40px;
+  font-size: 1rem;
+  border-radius: 5px;
+  background: salmon;
+  color: white;
+  font-weight: bold;
+  margin: 0 20px;
+  border: none;
+  box-shadow: 2px 4px 3px rgb(131, 68, 61);
+}
+
+button:hover {
+  background: white;
+  color: salmon;
+  cursor: pointer;
+  border: 1px solid rgb(17, 90, 56);
+}
+
+form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+input {
+  width: 30%;
+  margin-bottom: 20px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 2px 2px 4px gray;
+  padding-left: 12px;
+  font-size: 1rem;
+  color: rgb(17, 90, 56);
+}
+
+h2 {
+  color: rgb(17, 90, 56);
+}
+
+.jokes-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+}
+
+.each-joke-div {
+  box-shadow: 2px 3px 3px rgb(17, 90, 56);
+  background: rgb(179, 255, 220);
+  width: 200px;
+  /* height: 40px; */
+  margin: 10px;
+  border-radius: 5px;
+  
+}
